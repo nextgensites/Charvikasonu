@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Charvika Tours and Travels"
+description = "A cinematic 3D travel website for Charvika Tours and Travels, showcasing curated Indian journeys with direct WhatsApp enquiry and booking contact."
+version = "1.0.0"
+id = "artifacts/charvika-tours"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 24217
+
+[services.development]
+run = "pnpm --filter @workspace/charvika-tours run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/charvika-tours", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/charvika-tours/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "24217"
+BASE_PATH = "/"
