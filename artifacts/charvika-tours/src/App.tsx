@@ -1,6 +1,6 @@
-import { type FormEvent, type ReactNode, useEffect, useState } from 'react';
+import { type FormEvent, type PointerEvent as ReactPointerEvent, type ReactNode, useEffect, useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ArrowDown, ArrowRight, ArrowUpRight, Check, ChevronDown, ChevronLeft, ChevronRight, Clock3, Compass, Globe2, Luggage, Menu, MessageCircle, Phone, Quote, Route, ShieldCheck, Sparkles, Star, X } from 'lucide-react';
+import { ArrowDown, ArrowRight, ArrowUpRight, Check, ChevronDown, ChevronLeft, ChevronRight, Clock3, Globe2, Luggage, Menu, MessageCircle, Phone, Quote, Route, ShieldCheck, Sparkles, Star, X } from 'lucide-react';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
@@ -120,6 +120,7 @@ function Home() {
   const [openFaq, setOpenFaq] = useState(0);
   const [submitted, setSubmitted] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [destinationChoice, setDestinationChoice] = useState('');
   const active = destinations.find((destination) => destination.id === activeDestination) ?? destinations[0];
 
   useEffect(() => {
@@ -138,6 +139,17 @@ function Home() {
   };
 
   const closeMobile = () => setMobileOpen(false);
+  const moveWallpaper = (event: ReactPointerEvent<HTMLDivElement>) => {
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const x = ((event.clientX - bounds.left) / bounds.width - 0.5) * 2;
+    const y = ((event.clientY - bounds.top) / bounds.height - 0.5) * 2;
+    event.currentTarget.style.setProperty('--wallpaper-x', x.toFixed(3));
+    event.currentTarget.style.setProperty('--wallpaper-y', y.toFixed(3));
+  };
+  const resetWallpaper = (event: ReactPointerEvent<HTMLDivElement>) => {
+    event.currentTarget.style.setProperty('--wallpaper-x', '0');
+    event.currentTarget.style.setProperty('--wallpaper-y', '0');
+  };
 
   return (
     <main className="page-shell grain min-h-[100dvh]">
@@ -206,29 +218,33 @@ function Home() {
             </div>
           </div>
 
-          <div className="relative mx-auto h-[430px] w-full max-w-[500px] [perspective:1400px] md:h-[555px]">
-            <div className="absolute left-[7%] top-[9%] h-[76%] w-[76%] overflow-hidden rounded-[46%_46%_18%_18%] border border-[rgba(247,243,233,.24)] bg-[#356b6d] shadow-[30px_30px_0_rgba(220,96,60,.8)] [transform:rotateY(-15deg)_rotateX(5deg)_rotateZ(-5deg)] md:left-[11%] md:top-[8%] md:h-[80%] md:w-[74%]">
-              <div className="image-fallback absolute inset-0">
-                <RemoteImage src={photo01} alt="A snow-covered mountain town in Himachal" />
+          <div className="relative mx-auto h-[430px] w-full max-w-[560px] md:h-[555px]">
+            <div
+              className="hero-live-wallpaper"
+              onPointerMove={moveWallpaper}
+              onPointerLeave={resetWallpaper}
+              onPointerDown={moveWallpaper}
+              aria-label="Touch or move across the travel scenes to explore"
+            >
+              <div className="wallpaper-halo wallpaper-halo-one" />
+              <div className="wallpaper-halo wallpaper-halo-two" />
+              <div className="wallpaper-photo wallpaper-photo-back"><img src={photo02} alt="Misty green hills in Meghalaya" /></div>
+              <div className="wallpaper-photo wallpaper-photo-middle"><img src={photo04} alt="Jaisalmer fort in the Rajasthan desert" /></div>
+              <div className="wallpaper-photo wallpaper-photo-front"><img src={photo01} alt="A snow-covered mountain town in Himachal" /></div>
+              <div className="wallpaper-vignette" />
+              <div className="wallpaper-caption">
+                <p className="mono-font text-[9px] uppercase tracking-[.18em] text-[var(--saffron)]">Live field note / touch to explore</p>
+                <p className="display-font mt-2 text-3xl italic text-[var(--white-ink)] md:text-4xl">Let the place move you.</p>
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-[rgba(31,38,48,.78)] via-transparent to-[rgba(31,38,48,.12)]" />
-              <div className="absolute bottom-7 left-7">
-                <p className="mono-font text-[9px] uppercase tracking-[.18em] text-[var(--saffron)]">Field note  /  01</p>
-                <p className="display-font mt-2 text-3xl italic text-[var(--white-ink)]">Take the long way.</p>
-              </div>
-            </div>
-            <div className="float-slow absolute bottom-[6%] right-[0%] z-10 w-[205px] rounded-2xl border border-[rgba(247,243,233,.25)] bg-[rgba(247,243,233,.12)] p-4 shadow-[0_22px_50px_rgba(0,0,0,.24)] backdrop-blur-md md:right-[-4%]">
-              <div className="mb-7 flex items-center justify-between">
+              <div className="wallpaper-touch-hint"><Sparkles size={14} /> Move through India</div>
+              <div className="wallpaper-metric">
                 <span className="mono-font text-[9px] uppercase tracking-[.15em] text-[rgba(247,243,233,.65)]">A good route</span>
-                <Compass size={16} className="text-[var(--saffron)]" />
+                <div className="mt-5 flex items-end justify-between">
+                  <div><p className="text-2xl font-bold text-[var(--white-ink)]">∞</p><p className="mt-1 text-[10px] text-[rgba(247,243,233,.6)]">ways to feel India</p></div>
+                  <Route size={27} strokeWidth={1.2} className="text-[var(--saffron)]" />
+                </div>
               </div>
-              <div className="flex items-end justify-between">
-                <div><p className="text-2xl font-bold text-[var(--white-ink)]">1,248</p><p className="mt-1 text-[10px] text-[rgba(247,243,233,.6)]">miles from the ordinary</p></div>
-                <Route size={27} strokeWidth={1.2} className="text-[var(--saffron)]" />
-              </div>
-            </div>
-            <div className="absolute right-[10%] top-[3%] flex h-[71px] w-[71px] items-center justify-center rounded-full border border-[var(--saffron)] bg-[var(--saffron)] text-center text-[10px] font-bold leading-[1.2] text-[var(--ink)] shadow-lg md:right-[2%] md:top-[1%]">
-              Since<br />2011
+              <div className="wallpaper-since">Since<br />2011</div>
             </div>
           </div>
         </div>
@@ -459,7 +475,8 @@ function Home() {
                   <label className="block"><span className="mb-2 block text-[10px] font-bold uppercase tracking-[.13em] text-[var(--muted-foreground)]">Your name</span><input required name="name" placeholder="Aarav Mehta" className="w-full border-b border-[var(--border)] bg-transparent px-0 py-3 text-sm outline-none placeholder:text-[rgba(31,38,48,.38)] focus:border-[var(--copper)]" data-testid="input-name" /></label>
                   <label className="block"><span className="mb-2 block text-[10px] font-bold uppercase tracking-[.13em] text-[var(--muted-foreground)]">Email or phone</span><input required name="contact" placeholder="you@email.com" className="w-full border-b border-[var(--border)] bg-transparent px-0 py-3 text-sm outline-none placeholder:text-[rgba(31,38,48,.38)] focus:border-[var(--copper)]" data-testid="input-contact" /></label>
                 </div>
-                <label className="block"><span className="mb-2 block text-[10px] font-bold uppercase tracking-[.13em] text-[var(--muted-foreground)]">I am dreaming of</span><select name="destination" defaultValue="" className="w-full border-b border-[var(--border)] bg-transparent px-0 py-3 text-sm outline-none focus:border-[var(--copper)]" data-testid="select-destination"><option value="" disabled>Select a route</option><option>Kerala, unhurried</option><option>Rajasthan, in gold</option><option>Meghalaya, alive</option><option>Somewhere unexpected</option></select></label>
+                 <label className="block"><span className="mb-2 block text-[10px] font-bold uppercase tracking-[.13em] text-[var(--muted-foreground)]">I am dreaming of</span><select name="destination" value={destinationChoice} onChange={(event) => setDestinationChoice(event.target.value)} required className="w-full border-b border-[var(--border)] bg-transparent px-0 py-3 text-sm outline-none focus:border-[var(--copper)]" data-testid="select-destination"><option value="" disabled>Select a route</option><option>Kerala, unhurried</option><option>Rajasthan, in gold</option><option>Meghalaya, alive</option><option>Himachal, snowbound</option><option value="custom">Your choice — tell us where</option></select></label>
+                 {destinationChoice === 'custom' && <label className="block"><span className="mb-2 block text-[10px] font-bold uppercase tracking-[.13em] text-[var(--muted-foreground)]">Your place</span><input required name="custom-destination" placeholder="A place you have been dreaming about" className="w-full border-b border-[var(--border)] bg-transparent px-0 py-3 text-sm outline-none placeholder:text-[rgba(31,38,48,.38)] focus:border-[var(--copper)]" data-testid="input-custom-destination" /></label>}
                 <label className="block"><span className="mb-2 block text-[10px] font-bold uppercase tracking-[.13em] text-[var(--muted-foreground)]">Tell us a little more <span className="font-normal normal-case tracking-normal">(optional)</span></span><textarea name="message" rows={3} placeholder="A rough date, who is coming, the feeling you want..." className="w-full resize-none border-b border-[var(--border)] bg-transparent px-0 py-3 text-sm outline-none placeholder:text-[rgba(31,38,48,.38)] focus:border-[var(--copper)]" data-testid="textarea-message" /></label>
                 <div className="flex flex-col gap-4 pt-3 sm:flex-row sm:items-center sm:justify-between"><p className="text-[11px] leading-5 text-[var(--muted-foreground)]">No sales pitch. Just a considered first conversation.</p><button type="submit" className="group inline-flex items-center justify-center gap-3 rounded-full bg-[var(--ink)] px-6 py-3.5 text-xs font-bold uppercase tracking-[.12em] text-[var(--white-ink)] transition-transform hover:-translate-y-1" data-testid="button-submit-enquiry">Send enquiry <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" /></button></div>
               </form>
