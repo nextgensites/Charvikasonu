@@ -155,8 +155,8 @@ function Home() {
     <main className="page-shell grain min-h-[100dvh]">
       <div className="fixed left-0 top-0 z-50 h-1 bg-[var(--copper)] transition-[width] duration-150" style={{ width: `${scrollProgress * 100}%` }} />
 
-      <section id="home" className="relative min-h-[760px] overflow-hidden bg-[var(--ink)] text-[var(--white-ink)] md:min-h-[840px]">
-        <div className="hero-grid absolute inset-0 opacity-80" />
+      <section id="home" className="hero-stage relative min-h-[760px] overflow-hidden text-[var(--white-ink)] md:min-h-[840px]">
+        <div className="hero-contours absolute inset-0 opacity-90" />
         <div className="pointer-events-none absolute -right-40 top-16 h-[460px] w-[460px] rounded-full border border-[rgba(239,184,102,.24)] md:h-[720px] md:w-[720px]" />
         <div className="hero-orbit pointer-events-none absolute -right-32 top-28 h-[430px] w-[430px] rounded-full border border-dashed border-[rgba(239,184,102,.25)] md:h-[680px] md:w-[680px]" />
         <div className="pointer-events-none absolute left-[43%] top-[29%] h-2 w-2 rounded-full bg-[var(--saffron)] shadow-[0_0_0_9px_rgba(239,184,102,.12)]" />
