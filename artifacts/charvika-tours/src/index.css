@@ -159,9 +159,10 @@
 .section-space { padding: 118px 0; }
 .text-balance { text-wrap: balance; }
 
-.hero-stage { background: radial-gradient(circle at 82% 18%, rgba(239,184,102,.18), transparent 25%), radial-gradient(circle at 18% 50%, rgba(139,63,41,.2), transparent 34%), linear-gradient(132deg, #171113 0%, #2a1b1a 47%, #120e12 100%); }
-.hero-stage::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle at 72% 45%, rgba(239,184,102,.08), transparent 22%), radial-gradient(circle at 40% 88%, rgba(220,96,60,.12), transparent 28%); mix-blend-mode: screen; }
-.hero-contours { background-image: radial-gradient(ellipse at 78% 40%, transparent 0 26%, rgba(239,184,102,.13) 26.2% 26.35%, transparent 26.6% 35%, rgba(239,184,102,.08) 35.2% 35.35%, transparent 35.7% 46%, rgba(239,184,102,.06) 46.2% 46.35%, transparent 46.8%), radial-gradient(ellipse at 10% 108%, transparent 0 24%, rgba(239,184,102,.09) 24.2% 24.35%, transparent 24.7% 34%, rgba(239,184,102,.06) 34.2% 34.35%, transparent 34.7%); }
+.hero-stage { background: radial-gradient(circle at 82% 14%, rgba(255,211,121,.3), transparent 23%), radial-gradient(circle at 64% 45%, rgba(210,143,57,.18), transparent 27%), radial-gradient(circle at 10% 78%, rgba(151,67,38,.2), transparent 32%), linear-gradient(132deg, #120b0c 0%, #382116 42%, #1b1012 74%, #0d0a0d 100%); }
+.hero-stage::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle at 72% 45%, rgba(255,214,126,.12), transparent 23%), radial-gradient(circle at 40% 88%, rgba(220,96,60,.14), transparent 28%), linear-gradient(120deg, transparent 0 42%, rgba(239,184,102,.07) 42.2%, transparent 42.45% 60%, rgba(239,184,102,.05) 60.2%, transparent 60.45%); mix-blend-mode: screen; }
+.hero-stage::after { content: ""; position: absolute; inset: -14%; pointer-events: none; background: repeating-linear-gradient(116deg, transparent 0 148px, rgba(255,214,126,.06) 148px 149px, transparent 149px 296px); mix-blend-mode: screen; opacity: .75; animation: goldLines 22s ease-in-out infinite alternate; }
+.hero-contours { background-image: radial-gradient(ellipse at 78% 40%, transparent 0 25%, rgba(255,214,126,.2) 25.2% 25.38%, transparent 25.7% 34%, rgba(239,184,102,.13) 34.2% 34.38%, transparent 34.7% 44%, rgba(239,184,102,.1) 44.2% 44.38%, transparent 44.8% 54%, rgba(239,184,102,.06) 54.2% 54.38%, transparent 54.8%), radial-gradient(ellipse at 10% 108%, transparent 0 23%, rgba(239,184,102,.14) 23.2% 23.38%, transparent 23.7% 33%, rgba(239,184,102,.1) 33.2% 33.38%, transparent 33.7%); animation: contourDrift 28s ease-in-out infinite alternate; }
 .grain::after {
   content: "";
   pointer-events: none;
@@ -227,6 +228,8 @@
 @keyframes menuIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes pulseHalo { 0%,100% { transform: scale(.92); opacity: .45; } 50% { transform: scale(1.1); opacity: .75; } }
 @keyframes wallpaperDrift { 0%,100% { transform: scale(1.03) translate3d(0,0,0); } 50% { transform: scale(1.08) translate3d(-1.5%, -1%, 0); } }
+@keyframes goldLines { from { transform: translate3d(-2%, -1%, 0) rotate(-1deg); } to { transform: translate3d(2%, 1%, 0) rotate(1deg); } }
+@keyframes contourDrift { from { transform: translate3d(-1%, 0, 0) scale(1); opacity: .74; } to { transform: translate3d(1%, -1%, 0) scale(1.03); opacity: 1; } }
 
 @media (max-width: 767px) {
   .section-wrap { width: min(100% - 32px, 560px); }
