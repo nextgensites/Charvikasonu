@@ -6,6 +6,19 @@ import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import NotFound from '@/pages/not-found';
 import { Route as WouterRoute, Switch, useLocation, Router as WouterRouter } from 'wouter';
+import photo01 from '@assets/IMG_20260917_012620_1789588757103.jpg';
+import photo02 from '@assets/IMG_20260917_012603_1789588757185.jpg';
+import photo03 from '@assets/IMG_20260917_012546_1789588757233.jpg';
+import photo04 from '@assets/IMG_20260917_012523_1789588757275.jpg';
+import photo05 from '@assets/IMG_20260917_012505_1789588757311.jpg';
+import photo06 from '@assets/IMG_20260917_012447_1789588757367.jpg';
+import photo07 from '@assets/IMG_20260917_012428_1789588757424.jpg';
+import photo08 from '@assets/IMG_20260917_012404_1789588757499.jpg';
+import photo09 from '@assets/IMG_20260917_012350_1789588757587.jpg';
+import photo10 from '@assets/IMG_20260917_012337_1789588757690.jpg';
+import photo11 from '@assets/IMG_20260917_012318_1789588757796.jpg';
+import photo12 from '@assets/IMG_20260917_012302_1789588757877.jpg';
+import photo13 from '@assets/IMG_20260917_012249_1789588757955.jpg';
 
 const queryClient = new QueryClient();
 const whatsappUrl = 'https://wa.me/918880734777?text=Hello%20Charvika%20Tours%20and%20Travels%2C%20I%27d%20like%20to%20plan%20a%20personalised%20journey.';
@@ -18,7 +31,7 @@ const destinations = [
     detail: 'Backwater mornings, cardamom air, and coastlines that ask you to slow down.',
     fact: 'Best for  ·  Monsoon & winter',
     days: '06 nights / 07 days',
-    image: 'https://images.pexels.com/photos/9629904/pexels-photo-9629904.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    image: photo03,
     palette: '#356b6d',
   },
   {
@@ -28,7 +41,7 @@ const destinations = [
     detail: 'Desert dusk, hand-painted havelis, and a table set beneath a million stars.',
     fact: 'Best for  ·  Culture & celebration',
     days: '08 nights / 09 days',
-    image: 'https://images.pexels.com/photos/3581368/pexels-photo-3581368.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    image: photo04,
     palette: '#b47b45',
   },
   {
@@ -38,9 +51,35 @@ const destinations = [
     detail: 'Cloud forests, living root bridges, and roads that turn every bend into a reveal.',
     fact: 'Best for  ·  Wild-hearted weekends',
     days: '05 nights / 06 days',
-    image: 'https://images.pexels.com/photos/5081929/pexels-photo-5081929.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    image: photo02,
     palette: '#668c72',
   },
+  {
+    id: 'himachal',
+    name: 'Himachal, snowbound',
+    place: 'Manali · Solang · Old Town',
+    detail: 'Pine-scented mornings, mountain roads, and the easy warmth of a winter escape.',
+    fact: 'Best for  ·  Snow & stillness',
+    days: '05 nights / 06 days',
+    image: photo01,
+    palette: '#5b7891',
+  },
+];
+
+const galleryPhotos = [
+  { image: photo01, label: 'Snowbound Himachal' },
+  { image: photo02, label: 'Meghalaya in mist' },
+  { image: photo03, label: 'Mountain light' },
+  { image: photo04, label: 'Jaisalmer in gold' },
+  { image: photo05, label: 'Udaipur on water' },
+  { image: photo06, label: 'A slower road' },
+  { image: photo07, label: 'The view ahead' },
+  { image: photo08, label: 'Made for wandering' },
+  { image: photo09, label: 'A place to pause' },
+  { image: photo10, label: 'Between here and there' },
+  { image: photo11, label: 'Green season' },
+  { image: photo12, label: 'Open country' },
+  { image: photo13, label: 'The long way home' },
 ];
 
 const faqs = [
@@ -118,6 +157,7 @@ function Home() {
           <nav className="hidden items-center gap-8 md:flex" aria-label="Main navigation">
             <a href="#journeys" className="text-[11px] font-semibold uppercase tracking-[.15em] text-[rgba(247,243,233,.7)] transition-colors hover:text-[var(--saffron)]" data-testid="link-nav-journeys">Our way</a>
             <a href="#destinations" className="text-[11px] font-semibold uppercase tracking-[.15em] text-[rgba(247,243,233,.7)] transition-colors hover:text-[var(--saffron)]" data-testid="link-nav-destinations">Destinations</a>
+             <a href="#moments" className="text-[11px] font-semibold uppercase tracking-[.15em] text-[rgba(247,243,233,.7)] transition-colors hover:text-[var(--saffron)]" data-testid="link-nav-moments">Moments</a>
             <a href="#contact" className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[.15em] text-[var(--saffron)] transition-colors hover:text-[var(--white-ink)]" data-testid="link-nav-enquire">Plan a journey <ArrowUpRight size={14} /></a>
           </nav>
           <button className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[rgba(247,243,233,.25)] text-[var(--white-ink)] md:hidden" onClick={() => setMobileOpen((open) => !open)} aria-label="Toggle navigation" data-testid="button-toggle-navigation">
@@ -129,23 +169,29 @@ function Home() {
           <nav className="mobile-menu relative z-20 mx-4 mt-2 flex flex-col gap-1 rounded-2xl border border-[rgba(247,243,233,.14)] bg-[#252e38] p-3 md:hidden" aria-label="Mobile navigation">
             <a href="#journeys" onClick={closeMobile} className="rounded-xl px-4 py-3 text-sm text-[var(--white-ink)] hover:bg-[rgba(247,243,233,.08)]" data-testid="link-mobile-journeys">Our way</a>
             <a href="#destinations" onClick={closeMobile} className="rounded-xl px-4 py-3 text-sm text-[var(--white-ink)] hover:bg-[rgba(247,243,233,.08)]" data-testid="link-mobile-destinations">Destinations</a>
+             <a href="#moments" onClick={closeMobile} className="rounded-xl px-4 py-3 text-sm text-[var(--white-ink)] hover:bg-[rgba(247,243,233,.08)]" data-testid="link-mobile-moments">Moments</a>
             <a href="#contact" onClick={closeMobile} className="rounded-xl bg-[var(--copper)] px-4 py-3 text-sm font-bold text-[var(--white-ink)]" data-testid="link-mobile-contact">Plan a journey</a>
           </nav>
         )}
 
         <div className="relative z-10 mx-auto grid w-[min(1180px,calc(100%-32px))] items-center gap-10 pb-20 pt-20 md:min-h-[690px] md:w-[min(1180px,calc(100%-48px))] md:grid-cols-[1.03fr_.97fr] md:gap-16 md:pb-24 md:pt-24">
           <div>
-            <div className="reveal flex items-center gap-3 text-[var(--saffron)]">
+            <div className="reveal brand-lockup">
+              <span className="brand-lockup-name">CHARVIKA</span>
+              <span className="brand-lockup-line" />
+              <span className="brand-lockup-subtitle">TOURS <span>&amp;</span> TRAVELS</span>
+            </div>
+            <div className="reveal reveal-delay-1 flex items-center gap-3 text-[var(--saffron)]">
               <span className="h-px w-9 bg-[var(--saffron)]" />
               <span className="mono-font text-[10px] uppercase tracking-[.2em]">A travel studio from India</span>
             </div>
-            <h1 className="reveal reveal-delay-1 mt-7 max-w-[680px] text-balance text-[clamp(4rem,11vw,8.4rem)] font-semibold leading-[.86] tracking-[-.065em] text-[var(--white-ink)]">
+            <h1 className="reveal reveal-delay-2 mt-7 max-w-[680px] text-balance text-[clamp(4rem,11vw,8.4rem)] font-semibold leading-[.86] tracking-[-.065em] text-[var(--white-ink)]">
               Go where<br /><em className="display-font font-medium text-[var(--saffron)]">the story</em><br />begins.
             </h1>
-            <p className="reveal reveal-delay-2 mt-8 max-w-[420px] text-[15px] leading-7 text-[rgba(247,243,233,.68)]">
+            <p className="reveal reveal-delay-3 mt-8 max-w-[420px] text-[15px] leading-7 text-[rgba(247,243,233,.68)]">
               Personal journeys through the India you came to feel — shaped around your pace, your people, and the details you will still talk about years later.
             </p>
-            <div className="reveal reveal-delay-3 mt-9 flex flex-wrap items-center gap-4">
+            <div className="reveal reveal-delay-4 mt-9 flex flex-wrap items-center gap-4">
               <a href="#contact" className="group inline-flex items-center gap-4 rounded-full bg-[var(--copper)] px-6 py-3.5 text-xs font-bold uppercase tracking-[.12em] text-[var(--white-ink)] transition-transform hover:-translate-y-1" data-testid="link-hero-enquire">
                 Start with a feeling <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
               </a>
@@ -153,7 +199,7 @@ function Home() {
                 Explore routes <ArrowDown size={15} />
               </a>
             </div>
-            <div className="reveal reveal-delay-4 mt-14 flex items-center gap-7 text-[11px] text-[rgba(247,243,233,.55)]">
+            <div className="reveal reveal-delay-5 mt-14 flex items-center gap-7 text-[11px] text-[rgba(247,243,233,.55)]">
               <span className="flex items-center gap-2"><ShieldCheck size={15} className="text-[var(--saffron)]" /> Local-first planning</span>
               <span className="hidden h-4 w-px bg-[rgba(247,243,233,.22)] sm:block" />
               <span className="flex items-center gap-2"><Phone size={14} className="text-[var(--saffron)]" /> 88807 34777</span>
@@ -163,7 +209,7 @@ function Home() {
           <div className="relative mx-auto h-[430px] w-full max-w-[500px] [perspective:1400px] md:h-[555px]">
             <div className="absolute left-[7%] top-[9%] h-[76%] w-[76%] overflow-hidden rounded-[46%_46%_18%_18%] border border-[rgba(247,243,233,.24)] bg-[#356b6d] shadow-[30px_30px_0_rgba(220,96,60,.8)] [transform:rotateY(-15deg)_rotateX(5deg)_rotateZ(-5deg)] md:left-[11%] md:top-[8%] md:h-[80%] md:w-[74%]">
               <div className="image-fallback absolute inset-0">
-                <RemoteImage src="https://images.pexels.com/photos/2166553/pexels-photo-2166553.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="A quiet Indian mountain landscape" />
+                <RemoteImage src={photo01} alt="A snow-covered mountain town in Himachal" />
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-[rgba(31,38,48,.78)] via-transparent to-[rgba(31,38,48,.12)]" />
               <div className="absolute bottom-7 left-7">
@@ -231,7 +277,7 @@ function Home() {
               <p className="eyebrow">Routes worth taking</p>
               <h2 className="display-font mt-4 max-w-[620px] text-5xl leading-[.98] tracking-[-.05em] text-[var(--ink)] md:text-7xl">Start anywhere.<br /><em className="text-[var(--copper)]">Feel everywhere.</em></h2>
             </div>
-            <p className="max-w-[270px] text-sm leading-6 text-[var(--muted-foreground)]">Three ways into India. One will probably sound like you.</p>
+             <p className="max-w-[270px] text-sm leading-6 text-[var(--muted-foreground)]">Four ways into India. One will probably sound like you.</p>
           </div>
 
           <div className="mt-14 grid gap-4 lg:grid-cols-[1.2fr_.8fr]">
@@ -270,7 +316,7 @@ function Home() {
                   <div className="absolute inset-0 bg-gradient-to-t from-[rgba(20,27,34,.92)] to-[rgba(20,27,34,.08)]" />
                   <div className="relative z-10 flex h-full flex-col justify-between">
                     <div className="flex justify-between">
-                      <span className="mono-font text-[9px] uppercase tracking-[.17em] text-[rgba(247,243,233,.65)]">0{index + 2}  /  route</span>
+                   <span className="mono-font text-[9px] uppercase tracking-[.17em] text-[rgba(247,243,233,.65)]">0{index + 2}  /  route</span>
                       <ChevronRight size={18} className="text-[var(--saffron)] transition-transform group-hover:translate-x-1" />
                     </div>
                     <div><p className="text-[10px] uppercase tracking-[.13em] text-[var(--saffron)]">{destination.place}</p><h3 className="display-font mt-2 text-3xl italic">{destination.name}</h3></div>
@@ -282,6 +328,32 @@ function Home() {
           <div className="mt-7 flex items-center justify-between border-t border-[rgba(31,38,48,.18)] pt-5">
             <p className="mono-font text-[10px] uppercase tracking-[.15em] text-[var(--muted-foreground)]">Or tell us somewhere else</p>
             <a href="#contact" className="group flex items-center gap-2 text-xs font-bold uppercase tracking-[.12em] text-[var(--ink)]" data-testid="link-custom-destination">Build a custom route <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" /></a>
+          </div>
+        </div>
+      </section>
+
+      <section id="moments" className="relative overflow-hidden bg-[var(--ink)] py-24 text-[var(--white-ink)] md:py-32">
+        <div className="pointer-events-none absolute -right-24 top-8 h-80 w-80 rounded-full border border-[rgba(239,184,102,.2)]" />
+        <div className="pointer-events-none absolute right-8 top-28 h-52 w-52 rounded-full border border-dashed border-[rgba(239,184,102,.16)]" />
+        <div className="section-wrap relative">
+          <div className="grid gap-8 md:grid-cols-[.9fr_1.1fr] md:items-end">
+            <div>
+              <p className="mono-font text-[10px] uppercase tracking-[.2em] text-[var(--saffron)]">A little visual proof</p>
+              <h2 className="display-font mt-5 max-w-[580px] text-5xl leading-[.94] tracking-[-.05em] md:text-7xl">Bring home the <em className="text-[var(--saffron)]">feeling.</em></h2>
+            </div>
+            <p className="max-w-[410px] text-sm leading-7 text-[rgba(247,243,233,.62)]">A few places from our India — shared by travellers who wanted more than a checklist, and found a story instead.</p>
+          </div>
+          <div className="photo-gallery mt-14">
+            {galleryPhotos.map((photo, index) => (
+              <figure key={photo.image} className="gallery-item group">
+                <img src={photo.image} alt={photo.label} loading={index < 4 ? 'eager' : 'lazy'} />
+                <figcaption>{photo.label}</figcaption>
+              </figure>
+            ))}
+          </div>
+          <div className="mt-9 flex flex-col gap-4 border-t border-[rgba(247,243,233,.16)] pt-6 sm:flex-row sm:items-center sm:justify-between">
+            <span className="mono-font text-[9px] uppercase tracking-[.18em] text-[rgba(247,243,233,.42)]">Your next view could be here</span>
+            <a href="#contact" className="group inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[.13em] text-[var(--saffron)]" data-testid="link-gallery-enquire">Plan the feeling <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" /></a>
           </div>
         </div>
       </section>
@@ -400,7 +472,7 @@ function Home() {
         <div className="section-wrap">
           <div className="grid gap-10 border-b border-[rgba(247,243,233,.16)] pb-12 md:grid-cols-[1.2fr_.8fr_.8fr]">
             <div><a href="#home" className="inline-flex items-center gap-3" data-testid="link-footer-home"><span className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--saffron)] text-sm font-bold text-[var(--saffron)]">C</span><span className="text-[11px] font-extrabold tracking-[.18em]">CHARVIKA<br /><span className="font-medium text-[rgba(247,243,233,.5)]">TOURS &amp; TRAVELS</span></span></a><p className="mt-7 max-w-[290px] text-sm leading-6 text-[rgba(247,243,233,.55)]">The India you came to feel. Beautifully planned, deeply personal.</p></div>
-            <div><p className="mono-font text-[9px] uppercase tracking-[.18em] text-[var(--saffron)]">Explore</p><div className="mt-5 flex flex-col gap-3 text-sm text-[rgba(247,243,233,.7)]"><a href="#journeys" className="hover:text-[var(--saffron)]" data-testid="link-footer-way">Our way</a><a href="#destinations" className="hover:text-[var(--saffron)]" data-testid="link-footer-destinations">Destinations</a><a href="#contact" className="hover:text-[var(--saffron)]" data-testid="link-footer-contact">Plan your journey</a></div></div>
+             <div><p className="mono-font text-[9px] uppercase tracking-[.18em] text-[var(--saffron)]">Explore</p><div className="mt-5 flex flex-col gap-3 text-sm text-[rgba(247,243,233,.7)]"><a href="#journeys" className="hover:text-[var(--saffron)]" data-testid="link-footer-way">Our way</a><a href="#destinations" className="hover:text-[var(--saffron)]" data-testid="link-footer-destinations">Destinations</a><a href="#moments" className="hover:text-[var(--saffron)]" data-testid="link-footer-moments">Moments</a><a href="#contact" className="hover:text-[var(--saffron)]" data-testid="link-footer-contact">Plan your journey</a></div></div>
             <div><p className="mono-font text-[9px] uppercase tracking-[.18em] text-[var(--saffron)]">Talk to us</p><div className="mt-5 flex flex-col gap-3 text-sm text-[rgba(247,243,233,.7)]"><a href="tel:+918880734777" className="hover:text-[var(--saffron)]" data-testid="link-footer-phone">+91 88807 34777</a><a href={whatsappUrl} target="_blank" rel="noreferrer" className="hover:text-[var(--saffron)]" data-testid="link-footer-whatsapp">WhatsApp concierge</a><span>Bengaluru · India</span></div></div>
           </div>
           <div className="flex flex-col justify-between gap-4 pt-6 text-[10px] uppercase tracking-[.13em] text-[rgba(247,243,233,.38)] sm:flex-row"><span>© 2024 Charvika Tours and Travels</span><span>Journeys made personal</span></div>
