@@ -1,6 +1,6 @@
 import { type FormEvent, type PointerEvent as ReactPointerEvent, type ReactNode, useEffect, useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ArrowDown, ArrowRight, ArrowUpRight, Check, ChevronDown, ChevronLeft, ChevronRight, Clock3, Globe2, Luggage, Menu, MessageCircle, Phone, Quote, Route, ShieldCheck, Sparkles, Star, X } from 'lucide-react';
+import { ArrowDown, ArrowRight, ArrowUpRight, Check, ChevronDown, ChevronLeft, ChevronRight, Clock3, Globe2, Instagram, Luggage, Menu, MessageCircle, Phone, Quote, Route, ShieldCheck, Sparkles, Star, X } from 'lucide-react';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
@@ -22,6 +22,7 @@ import photo13 from '@assets/IMG_20260917_012249_1789588757955.jpg';
 
 const queryClient = new QueryClient();
 const whatsappUrl = 'https://wa.me/918880734777?text=Hello%20Charvika%20Tours%20and%20Travels%2C%20I%27d%20like%20to%20plan%20a%20personalised%20journey.';
+const instagramUrl = 'https://www.instagram.com/darling_deepu_1?stkn=dXN6d2h2eHlyZ2Yw';
 
 const destinations = [
   {
@@ -456,6 +457,7 @@ function Home() {
             <div className="mt-12 space-y-4 text-sm">
               <a href="tel:+918880734777" className="flex items-center gap-3 text-[var(--white-ink)] hover:underline" data-testid="link-contact-phone"><Phone size={17} /> +91 88807 34777</a>
               <a href={whatsappUrl} target="_blank" rel="noreferrer" className="flex items-center gap-3 text-[var(--white-ink)] hover:underline" data-testid="link-contact-whatsapp"><MessageCircle size={17} /> WhatsApp us anytime</a>
+              <a href={instagramUrl} target="_blank" rel="noreferrer" className="flex items-center gap-3 text-[var(--white-ink)] hover:underline" data-testid="link-contact-instagram"><Instagram size={17} /> Follow us on Instagram</a>
               <p className="flex items-center gap-3 text-[rgba(247,243,233,.68)]"><Clock3 size={17} /> Usually replies within an hour</p>
             </div>
           </div>
@@ -490,13 +492,16 @@ function Home() {
           <div className="grid gap-10 border-b border-[rgba(247,243,233,.16)] pb-12 md:grid-cols-[1.2fr_.8fr_.8fr]">
             <div><a href="#home" className="inline-flex items-center gap-3" data-testid="link-footer-home"><span className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--saffron)] text-sm font-bold text-[var(--saffron)]">C</span><span className="text-[11px] font-extrabold tracking-[.18em]">CHARVIKA<br /><span className="font-medium text-[rgba(247,243,233,.5)]">TOURS &amp; TRAVELS</span></span></a><p className="mt-7 max-w-[290px] text-sm leading-6 text-[rgba(247,243,233,.55)]">The India you came to feel. Beautifully planned, deeply personal.</p></div>
              <div><p className="mono-font text-[9px] uppercase tracking-[.18em] text-[var(--saffron)]">Explore</p><div className="mt-5 flex flex-col gap-3 text-sm text-[rgba(247,243,233,.7)]"><a href="#journeys" className="hover:text-[var(--saffron)]" data-testid="link-footer-way">Our way</a><a href="#destinations" className="hover:text-[var(--saffron)]" data-testid="link-footer-destinations">Destinations</a><a href="#moments" className="hover:text-[var(--saffron)]" data-testid="link-footer-moments">Moments</a><a href="#contact" className="hover:text-[var(--saffron)]" data-testid="link-footer-contact">Plan your journey</a></div></div>
-            <div><p className="mono-font text-[9px] uppercase tracking-[.18em] text-[var(--saffron)]">Talk to us</p><div className="mt-5 flex flex-col gap-3 text-sm text-[rgba(247,243,233,.7)]"><a href="tel:+918880734777" className="hover:text-[var(--saffron)]" data-testid="link-footer-phone">+91 88807 34777</a><a href={whatsappUrl} target="_blank" rel="noreferrer" className="hover:text-[var(--saffron)]" data-testid="link-footer-whatsapp">WhatsApp concierge</a><span>Bengaluru · India</span></div></div>
+             <div><p className="mono-font text-[9px] uppercase tracking-[.18em] text-[var(--saffron)]">Talk to us</p><div className="mt-5 flex flex-col gap-3 text-sm text-[rgba(247,243,233,.7)]"><a href="tel:+918880734777" className="hover:text-[var(--saffron)]" data-testid="link-footer-phone">+91 88807 34777</a><a href={whatsappUrl} target="_blank" rel="noreferrer" className="hover:text-[var(--saffron)]" data-testid="link-footer-whatsapp">WhatsApp concierge</a><a href={instagramUrl} target="_blank" rel="noreferrer" className="hover:text-[var(--saffron)]" data-testid="link-footer-instagram">Instagram @darling_deepu_1</a><span>Bengaluru · India</span></div></div>
           </div>
           <div className="flex flex-col justify-between gap-4 pt-6 text-[10px] uppercase tracking-[.13em] text-[rgba(247,243,233,.38)] sm:flex-row"><span>© 2024 Charvika Tours and Travels</span><span>Journeys made personal</span></div>
         </div>
       </footer>
 
-      <a href={whatsappUrl} target="_blank" rel="noreferrer" className="fixed bottom-5 right-5 z-40 flex items-center gap-3 rounded-full bg-[var(--teal)] px-4 py-3 text-xs font-bold text-[var(--white-ink)] shadow-[0_12px_30px_rgba(31,38,48,.24)] transition-transform hover:-translate-y-1" data-testid="link-floating-whatsapp"><MessageCircle size={18} /> <span className="hidden sm:inline">Chat with a trip designer</span><span className="sm:hidden">WhatsApp</span></a>
+       <div className="fixed bottom-5 right-5 z-40 flex items-center gap-2">
+         <a href={instagramUrl} target="_blank" rel="noreferrer" aria-label="Follow Charvika Tours and Travels on Instagram" className="flex items-center gap-2 rounded-full bg-[#b74772] px-3.5 py-3 text-xs font-bold text-[var(--white-ink)] shadow-[0_12px_30px_rgba(31,38,48,.24)] transition-transform hover:-translate-y-1" data-testid="link-floating-instagram"><Instagram size={18} /> <span className="hidden sm:inline">Instagram</span></a>
+         <a href={whatsappUrl} target="_blank" rel="noreferrer" className="flex items-center gap-3 rounded-full bg-[var(--teal)] px-4 py-3 text-xs font-bold text-[var(--white-ink)] shadow-[0_12px_30px_rgba(31,38,48,.24)] transition-transform hover:-translate-y-1" data-testid="link-floating-whatsapp"><MessageCircle size={18} /> <span className="hidden sm:inline">Chat with a trip designer</span><span className="sm:hidden">WhatsApp</span></a>
+       </div>
       <a href="#home" className="fixed bottom-5 left-5 z-40 flex h-10 w-10 items-center justify-center rounded-full border border-[rgba(31,38,48,.18)] bg-[rgba(243,239,228,.84)] text-[var(--ink)] shadow-sm backdrop-blur-sm transition-transform hover:-translate-y-1" aria-label="Back to top" data-testid="link-back-to-top"><ChevronLeft size={17} className="rotate-90" /></a>
     </main>
   );
